@@ -27,22 +27,27 @@ async function handleUserLogin (req, res) {
     const { email, password } = req.body;
 
     const passwordCheck = await User.verifyPassword(email, password);
-
     if (!passwordCheck) {
-        res.cookie('Verified', false , { httpOnly: true, maxAge: 30 * 1000 });
-        return res.status(401).redirect('/user/login');
+        return res.status(401).render('login', { error: 'Email or password is incorrect' });
     }
 
     const user = await User.findOne({ email });
     const token = setUser(user);
+
     res.cookie('__sessionID', token, { httpOnly: true });
 
-    return res.redirect('/');
+    return res.redirect('/'); // 🔥 now navbar will show username automatically
+}
+
+function handleUserLogout (req, res) {
+    res.clearCookie('__sessionID');
+    res.redirect('/');
 }
 
 module.exports = {
     handleRenderSignupPage,
     handleRenderLoginPage,
     handleUserSignup,
-    handleUserLogin
+    handleUserLogin,
+    handleUserLogout
 };

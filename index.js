@@ -1,6 +1,7 @@
 require('dotenv').config({quiet: true});
 const path = require("path");
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const { connectDB } = require('./config/db.config.js');
 const rootRoutes = require('./routes/root.routes.js');
@@ -16,6 +17,7 @@ connectDB(connectionString)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(checkForAuthentication);
 
 app.set('view engine', 'ejs');

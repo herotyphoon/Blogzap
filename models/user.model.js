@@ -1,34 +1,34 @@
 require('dotenv').config({quiet: true});
 const bcrypt = require('bcrypt');
-
 const { Schema, model } = require('mongoose');
+
 const { hashPassword } = require('../services/hash.service.js');
 
 const userSchema = new Schema({
-    fullName: {
-        type: String,
-        required: true,
+        fullName: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            lowercase: true,
+        },
+        password: {
+            type: String,
+            required: true,
+        },
+        profileImageURL: {
+            type: String,
+            default: './images/default.png',
+        },
+        role: {
+            type: String,
+            enum: ['user', 'admin'],
+            default: 'user',
+        }
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    profileImageURL: {
-        type: String,
-        default: './images/default.png',
-    },
-    role: {
-        type: String,
-        enum: ['user', 'admin'],
-        default: 'user',
-    }
-},
     { timestamps: true }
 );
 

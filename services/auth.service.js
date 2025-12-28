@@ -5,9 +5,10 @@ function setUser (user) {
     const payload = {
         _id : user._id,
         email : user.email,
+        fullName: user.fullName, // 🔥 ADD THIS
         role: user.role,
     }
-    return jwt.sign(payload, process.env.SECRET_KEY)
+    return jwt.sign(payload, process.env.SECRET_KEY);
 }
 
 function getUser (token) {
