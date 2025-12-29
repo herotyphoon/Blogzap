@@ -1,4 +1,5 @@
 const cloudinary = require('../config/cloudinary.config.js');
+const {Types} = require("mongoose");
 
 const Blog = require('../models/blog.model.js');
 const {refineBlogDetails} = require('../services/refineBlogDetails.service.js');
@@ -88,7 +89,7 @@ async function handleAddBlog (req, res) {
 async function handleRenderSpecificBlog (req, res) {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    if (!Types.ObjectId.isValid(id)) {
         return res.status(404).render("404", { url: req.originalUrl });
     }
 
