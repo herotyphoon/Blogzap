@@ -81,21 +81,48 @@ http://localhost:3000
 ## 📂 Project Structure
 
 ```
-blogzap/
- ├─ controllers/
- ├─ middleware/
- ├─ models/
- ├─ routes/
- ├─ services/
- ├─ public/
- ├─ views/
- │   ├─ components/
- │   ├─ 404.ejs
- │   ├─ blog.ejs
- │   ├─ addBlog.ejs
- │   ├─ home.ejs
- ├─ app.js
- └─ README.md
+Blogzap/
+├── index.js
+├── config/
+│   ├── cloudinary.config.js
+│   └── db.config.js
+├── controllers/
+│   ├── 404.controllers.js
+│   ├── blog.controllers.js
+│   ├── root.controllers.js
+│   └── user.controllers.js
+├── middleware/
+│   ├── auth.middleware.js
+│   └── upload.middleware.js
+├── models/
+│   ├── blog.model.js
+│   └── user.model.js
+├── public/
+│   └── images/
+├── routes/
+│   ├── blog.routes.js
+│   ├── root.routes.js
+│   └── user.routes.js
+├── services/
+│   ├── auth.service.js
+│   ├── hash.service.js
+│   ├── refineBlogDetails.service.js
+│   └── storeImage.service.js
+└── views/
+    ├── 404.ejs
+    ├── addBlog.ejs
+    ├── blog.ejs
+    ├── index.ejs
+    ├── login.ejs
+    ├── signup.ejs
+    ├── specificBlog.ejs
+    └── components/
+        ├── footer.ejs
+        ├── head.ejs
+        ├── navbar.ejs
+        ├── navbarWithSearch.ejs
+        └── scripts.ejs
+
 ```
 
 ## 🧠 Core Workflow
