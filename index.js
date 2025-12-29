@@ -31,5 +31,5 @@ app.use('/blog', blogRoutes);
 app.use(handleNoRoutesMatch)
 
 app.listen(port, () => {
-    console.log(`Listening on port http://localhost:${port}`);
+    console.log('Server Listening');
 })
