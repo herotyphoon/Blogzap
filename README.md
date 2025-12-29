@@ -42,20 +42,20 @@ No local setup required to use the platform — just sign up, write, and publish
 
 If you want to run Blogzap locally or contribute:
 
-**Clone the repo**
+#### Clone the repo
 
 ```
 git clone https://github.com/your-username/blogzap.git
 cd blogzap
 ```
 
-**Install dependencies**
+#### Install dependencies
 
 ```
 npm install
 ```
 
-**Environment Variables**
+#### Environment Variables
 
 Create a `.env` file in the project root:
 
@@ -66,7 +66,7 @@ CLOUDINARY_URL="cloudinary://<api_key>:<api_secret>@<cloud_name>"
 SESSION_SECRET="your-session-secret"
 ```
 
-**Run the Server**
+#### Run the Server
 
 ```
 npm start
