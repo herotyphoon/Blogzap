@@ -17,17 +17,22 @@
 
 <body class="bg-light">
 
-<%- include('./components/navbar.ejs') %>
+<%- include('./components/navbarWithSearch.ejs') %>
 
 <div class="container-fluid py-5 bg-light">
     <div class="container-xl">
         <h1 class="fw-bold mb-5 text-center display-5">Explore Blogs</h1>
 
-        <% if (blogs.length === 0) { %>
+        <% if (blogs.length === 0 && !(locals.message)) { %>
             <div class="alert alert-info text-center fs-5">
                 No blogs added yet. Start writing your story! ✍️
             </div>
         <% } %>
+
+        <% if (locals.message) { %>
+            <div class="alert alert-warning text-center fs-5 my-4"><%= message %></div>
+        <% } %>
+
 
         <div class="row g-4">
             <% blogs.forEach(blog => { %>
@@ -64,9 +69,11 @@
             <nav class="mt-5">
                 <ul class="pagination justify-content-center">
 
+                    <% const searchQuery = search ? `&search=${search}` : ""; %>
+
                     <% if (hasPrevPage) { %>
                         <li class="page-item">
-                            <a class="page-link" href="/blogs?page=<%= currentPage - 1 %>">Prev</a>
+                            <a class="page-link" href="/blog?page=<%= currentPage - 1 %><%= searchQuery %>">Prev</a>
                         </li>
                     <% } else { %>
                         <li class="page-item disabled">
@@ -76,13 +83,13 @@
 
                     <% for (let i = 1; i <= totalPages; i++) { %>
                         <li class="page-item <%= i === currentPage ? 'active' : '' %>">
-                            <a class="page-link" href="/blogs?page=<%= i %>"><%= i %></a>
+                            <a class="page-link" href="/blog?page=<%= i %><%= searchQuery %>"><%= i %></a>
                         </li>
                     <% } %>
 
                     <% if (hasNextPage) { %>
                         <li class="page-item">
-                            <a class="page-link" href="/blogs?page=<%= currentPage + 1 %>">Next</a>
+                            <a class="page-link" href="/blog?page=<%= currentPage + 1 %><%= searchQuery %>">Next</a>
                         </li>
                     <% } else { %>
                         <li class="page-item disabled">
@@ -93,6 +100,7 @@
                 </ul>
             </nav>
         <% } %>
+
 
     </div>
 </div>

@@ -6,9 +6,17 @@
 </head>
 <body>
 
-<%- include('./components/navbar.ejs') %>
+<%- include('./components/navbarWithSearch.ejs') %>
 
 <br>
+<% if (locals.error) { %>
+    <div class="alert alert-danger"><%= locals.error %></div>
+<% } %>
+
+<br>
+
+<h1 class="display-4 fw-bold text-center mb-1">Add Blog</h1>
+
 <br>
 
 <form class="m-4" method="POST" action="/blog/add" enctype="multipart/form-data">
@@ -22,11 +30,12 @@
     <div class="mb-3">
         <label for="cover" class="form-label">Cover Image</label>
         <input class="form-control" type="file" id="cover" name="cover" accept="image/*" required>
+        <div id="coverHelp" class="form-text">Image size should be less than 2 MB</div>
     </div>
     <br>
 
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Add Content" id="content" name="content" style="height: 500px" required></textarea>
+        <textarea class="form-control" placeholder="Add Content" id="content" name="content" style="height: 420px" required></textarea>
         <label for="content">Blog Content</label>
     </div>
     <br>

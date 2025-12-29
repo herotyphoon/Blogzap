@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/head.ejs') %>
+    <title>Blogzap | 404</title>
+</head>
+
+<body class="bg-light">
+
+<%- include('./components/navbar.ejs') %>
+
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 70vh;">
+
+    <h1 class="display-3 fw-bold text-danger">404</h1>
+    <h2 class="fw-semibold mb-3">Page Not Found</h2>
+
+    <p class="text-muted mb-4">
+        We searched everywhere on the server and the cloud, but <code><%= url %></code> doesn’t exist.
+    </p>
+
+    <a href="/blog" class="btn btn-primary btn-lg mb-2">Go to Blogs</a>
+    <a href="/" class="text-decoration-none text-secondary">Return Home</a>
+
+</div>
+
+<footer class="py-3 bg-dark text-white text-center mt-auto">
+    <small>© <%= new Date().getFullYear() %> Blogzap — All rights reserved.</small>
+</footer>
+
+<%- include('./components/scripts.ejs') %>
+</body>
+</html>

@@ -7,7 +7,8 @@ const { connectDB } = require('./config/db.config.js');
 const rootRoutes = require('./routes/root.routes.js');
 const userRoutes = require('./routes/user.routes.js');
 const blogRoutes = require('./routes/blog.routes.js');
-const { checkForAuthentication, restrictTo } = require('./middleware/auth.middleware.js');
+const {handleNoRoutesMatch} = require('./controllers/404.controllers.js');
+const { checkForAuthentication } = require('./middleware/auth.middleware.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,11 +24,11 @@ app.use(checkForAuthentication);
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./views'));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', rootRoutes);
 app.use('/user', userRoutes);
 app.use('/blog', blogRoutes);
+app.use(handleNoRoutesMatch)
 
 app.listen(port, () => {
     console.log(`Listening on port http://localhost:${port}`);
