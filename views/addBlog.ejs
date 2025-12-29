@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/head.ejs') %>
+    <title>Add Blog</title>
+</head>
+<body>
+
+<%- include('./components/navbar.ejs') %>
+
+<br>
+<br>
+
+<form class="m-4" method="POST" action="/blog/add" enctype="multipart/form-data">
+
+    <div class="form-floating">
+        <input type="text" class="form-control" placeholder="Title" id="title" name="title" required>
+        <label for="title">Title</label>
+    </div>
+    <br>
+
+    <div class="mb-3">
+        <label for="cover" class="form-label">Cover Image</label>
+        <input class="form-control" type="file" id="cover" name="cover" accept="image/*" required>
+    </div>
+    <br>
+
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Add Content" id="content" name="content" style="height: 500px" required></textarea>
+        <label for="content">Blog Content</label>
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-primary">Publish Blog</button>
+</form>
+
+<%- include('./components/scripts.ejs') %>
+</body>
+</html>

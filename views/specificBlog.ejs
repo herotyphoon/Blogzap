@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/head.ejs') %>
+    <title><%= locals.title %></title>
+
+    <style>
+        .content-area {
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<%- include('./components/navbar.ejs') %>
+
+<div class="container-fluid p-0">
+    <img src="<%= locals.coverImageURL %>"
+         class="img-fluid w-100"
+         style="max-height: 450px; object-fit: cover; border-bottom: 3px solid #ddd;">
+</div>
+
+<div class="container content-area py-5">
+
+    <h1 class="fw-bold mb-3"><%= locals.title %></h1>
+
+    <div class="d-flex align-items-center text-muted mb-4">
+        <i class="bi bi-person-circle me-2"></i>
+        <span class="me-3"><%= locals.author %></span>
+
+        <i class="bi bi-calendar-event me-2"></i>
+        <span><%= locals.uploadedAt %></span>
+    </div>
+
+    <hr>
+
+    <div class="mt-4" style="white-space: pre-line;">
+        <%= locals.content %>
+    </div>
+
+    <hr class="my-5">
+
+    <a href="/blog" class="btn btn-outline-secondary">
+        ← Back to Blogs
+    </a>
+
+</div>
+
+<%- include('./components/scripts.ejs') %>
+
+</body>
+</html>

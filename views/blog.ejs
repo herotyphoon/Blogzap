@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/head.ejs') %>
+    <title>Blogs</title>
+
+    <style>
+        .blog-card {
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.15);
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+<%- include('./components/navbar.ejs') %>
+
+<div class="container-fluid py-5 bg-light">
+    <div class="container-xl">
+        <h1 class="fw-bold mb-5 text-center display-5">Explore Blogs</h1>
+
+        <% if (blogs.length === 0) { %>
+            <div class="alert alert-info text-center fs-5">
+                No blogs added yet. Start writing your story! ✍️
+            </div>
+        <% } %>
+
+        <div class="row g-4">
+            <% blogs.forEach(blog => { %>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+
+                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm blog-card h-100">
+                        <img src="<%= blog.coverImageURL %>"
+                             class="w-100"
+                             style="height: 350px; object-fit: cover;">
+
+                        <div class="card-body p-4">
+                            <h2 class="card-title fw-semibold mb-2"><%= blog.title %></h2>
+                            <p class="text-muted mb-3"><%= blog.description %>...</p>
+                            <a href="/blog/<%= blog._id %>" class="btn btn-outline-primary">
+                                Read More →
+                            </a>
+                        </div>
+
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center border-0 px-4 pb-4">
+                            <small class="text-muted">
+                                By <b><%= blog.createdBy.fullName %></b>
+                            </small>
+                            <small class="text-muted">
+                                <%= blog.createdAt.toDateString() %>
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+            <% }) %>
+        </div>
+
+        <% if (totalPages > 1) { %>
+            <nav class="mt-5">
+                <ul class="pagination justify-content-center">
+
+                    <% if (hasPrevPage) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/blogs?page=<%= currentPage - 1 %>">Prev</a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-item disabled">
+                            <span class="page-link">Prev</span>
+                        </li>
+                    <% } %>
+
+                    <% for (let i = 1; i <= totalPages; i++) { %>
+                        <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                            <a class="page-link" href="/blogs?page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+
+                    <% if (hasNextPage) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/blogs?page=<%= currentPage + 1 %>">Next</a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-item disabled">
+                            <span class="page-link">Next</span>
+                        </li>
+                    <% } %>
+
+                </ul>
+            </nav>
+        <% } %>
+
+    </div>
+</div>
+
+<%- include('./components/scripts.ejs') %>
+
+</body>
+</html>
